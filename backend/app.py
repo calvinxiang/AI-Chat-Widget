@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # pipe = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct-v0.2")
-anthropic_api_key = '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'
+anthropic_api_key = ''
 client = anthropic.Anthropic(
     api_key = anthropic_api_key
 )
