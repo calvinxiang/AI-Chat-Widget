@@ -3,13 +3,17 @@ from flask_cors import CORS
 # from langchain.llms import LlamaCpp
 from transformers import pipeline
 import anthropic
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
 # pipe = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct-v0.2")
 client = anthropic.Anthropic(
-    api_key = anthropic_api_key
+    api_key = os.getenv("ANTHROPIC_API_KEY")
 )
 
 # llm = LlamaCpp(model_path=r"C:\Users\Calvin\.cache\lm-studio\models\TheBloke\Mistral-7B-Instruct-v0.1-GGUF\mistral-7b-instruct-v0.1.Q2_K.gguf")
