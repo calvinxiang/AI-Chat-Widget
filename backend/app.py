@@ -1,22 +1,22 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-# from langchain.llms import LlamaCpp
-from transformers import pipeline
+import chromadb
 import anthropic
 import os
 from dotenv import load_dotenv
+from chromadb.utils import embedding_functions
+from chromadb.config import Settings
 
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-# pipe = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct-v0.2")
+chroma_client = chromadb.Client()
+
 client = anthropic.Anthropic(
     api_key = os.getenv("ANTHROPIC_API_KEY")
 )
-
-# llm = LlamaCpp(model_path=r"C:\Users\Calvin\.cache\lm-studio\models\TheBloke\Mistral-7B-Instruct-v0.1-GGUF\mistral-7b-instruct-v0.1.Q2_K.gguf")
 
 @app.route('/chat', methods=['POST'])
 def handle_chat():
